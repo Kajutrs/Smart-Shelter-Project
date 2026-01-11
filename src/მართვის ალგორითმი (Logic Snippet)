@@ -1,0 +1,6 @@
+// გათბობის ლოგიკა: მანძილი < 700მმ და ტემპერატურა < 18°C
+if (distance < 700 && temperature < 18.0) {
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);   // გათბობა ჩაირთო
+} else {
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // გათბობა გაითიშა
+}
