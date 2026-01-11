@@ -1,5 +1,7 @@
 #  ჭკვიანი თავშესაფრის (Smart Shelter) ექსპლუატაციის სახელმძღვანელო
 
+PDF Link: [ექსპლუატაციის სახელმძღვანელო.pdf](https://github.com/user-attachments/files/24551484/default.pdf)
+
 **პროექტის ავტორები:** თამარ ჯაში, გრიშა ტონერიანი, მარი დავლაძე  
 **თარიღი:** 2026
 
@@ -47,5 +49,4 @@
 
 
 
-[ექსპლუატაციის სახელმძღვანელო.pdf](https://github.com/user-attachments/files/24551484/default.pdf)
 
