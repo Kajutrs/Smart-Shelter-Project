@@ -1,0 +1,7 @@
+// პინების დეკლარაცია სენსორებისა და რელესთვის
+#define DHT22_PIN      GPIO_PIN_1  // PA1: ტემპერატურის სენსორი
+#define DHT22_PORT     GPIOA
+#define HEATER_RELAY   GPIO_PIN_5  // PA5: გათბობის რელე
+#define RELAY_PORT     GPIOA
+#define VL53L0X_SCL    GPIO_PIN_8  // PB8: I2C Clock
+#define VL53L0X_SDA    GPIO_PIN_9  // PB9: I2C Data
