@@ -1,0 +1,14 @@
+// Dashboard-ის და კამერის ინტეგრაციის სერვერი
+func main() {
+    http.HandleFunc("/dashboard", func(w http.ResponseWriter, r *http.Request) {
+        // მონაცემების გადაცემა HTML შაბლონში
+        data := map[string]interface{}{
+            "Temp":   currentTemp,
+            "Dist":   currentDist,
+            "Stream": "rtsp://admin:pass@192.168.1.XX:554/stream1", // Tapo Stream
+        }
+        renderTemplate(w, "dashboard.html", data)
+    })
+    
+    log.Fatal(http.ListenAndServe(":8080", nil))
+}
