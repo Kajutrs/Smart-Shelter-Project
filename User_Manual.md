@@ -10,7 +10,8 @@
 | :--- | :--- | :--- | :--- |
 | **DHT22** | PA1 | Single-Wire | ტემპერატურის აღრიცხვა |
 | **VL53L0X (SCL)** | PB8 | I2C Clock | მანძილის გაზომვა (I2C) |
-| **VL53L0X (SDA)** | PB9 | I2C Data | მანძილის გაზომვა (I2C) |
+| **VL53L0X (SDA)** | PB9 | I2C[ექსპლუატაციის სახელმძღვანელო.pdf](https://github.com/user-attachments/files/24551483/default.pdf)
+ Data | მანძილის გაზომვა (I2C) |
 | **Relay Module** | PA5 | Digital Out | გათბობის ელემენტის მართვა |
 | **ESP-01 (TX)** | PA3 | UART RX | მონაცემთა გადაცემა სერვერზე |
 | **ESP-01 (RX)** | PA2 | UART TX | ბრძანებების მიღება (UART) |
