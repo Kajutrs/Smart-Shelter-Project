@@ -1,12 +1,37 @@
-// მონაცემთა გაგზავნა ESP-01-ის გამოყენებით
-void Send_Telemetry(float temp, int dist) {
-    char post_req[128];
-    // JSON ფორმატის მომზადება
-    sprintf(post_data, "{\"temp\": %.2f, \"dist\": %d}", temp, dist);
+// მონაცემთა გაგზავნა SIM800C-ის გამოყენებით
+void Send_Telemetry_SIM800(float temp, int dist) {
+    char post_data[128];
+    char size_cmd[32];
     
-    // AT ბრძანებების თანმიმდევრობა
-    UART_Send("AT+CIPSTART=\"TCP\",\"192.168.1.100\",8080\r\n"); // სერვერთან დაკავშირება
+    // 1. JSON ფორმატის მომზადება
+    sprintf(post_data, "{\"temp\": %.2f, \"dist\": %d}", temp, dist);
+    int data_len = strlen(post_data);
+
+    // 2. HTTP სესიის ინიციალიზაცია
+    UART_Send("AT+HTTPINIT\r\n");
     HAL_Delay(500);
-    UART_Send("AT+CIPSEND=..."); // მონაცემების ზომის გაგზავნა
-    UART_Send(post_data);         // თავად ტელემეტრიის გაგზავნა
+
+    // 3. სერვერის URL-ის მითითება
+    UART_Send("AT+HTTPPARA=\"URL\",\"http://your-server-ip:8080/data\"\r\n");
+    HAL_Delay(500);
+
+    // 4. მონაცემების ტიპის მითითება (JSON)
+    UART_Send("AT+HTTPPARA=\"CONTENT\",\"application/json\"\r\n");
+    HAL_Delay(500);
+
+    // 5. მონაცემების ზომის მითითება და მომზადება გაგზავნისთვის
+    sprintf(size_cmd, "AT+HTTPDATA=%d,5000\r\n", data_len); // 5000ms დალოდება მონაცემებისთვის
+    UART_Send(size_cmd);
+    HAL_Delay(100);
+
+    // 6. თავად JSON მონაცემების გაგზავნა
+    UART_Send(post_data);
+    HAL_Delay(500);
+
+    // 7. POST მოთხოვნის შესრულება
+    UART_Send("AT+HTTPACTION=1\r\n"); // 1 ნიშნავს POST-ს
+    HAL_Delay(2000); // ველოდებით სერვერის პასუხს
+
+    // 8. სესიის დასრულება
+    UART_Send("AT+HTTPTERM\r\n");
 }
